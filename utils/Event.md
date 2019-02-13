@@ -1,4 +1,4 @@
-﻿#Lady.Event
+# Lady.Event
 
 Why `Lady` ? No one knows...
 
@@ -7,16 +7,23 @@ Why `Lady` ? No one knows...
 // somewhere in a monobehavior scripts
 void Start()
 {
-    Lady.Event.On(transform.GetChild(0).GetChild(0).gameObject, "Yolo", e => {
+    GameObject aChild = transform.GetChild(0).GetChild(0).gameObject;
+    
+    // listen "Yolo" event on aChild
+    Lady.Event.On(aChild, "Yolo", e => {
 
         Debug.Log("yeah propagation works!");
         Debug.Log(e.currentTarget);
 
     });
-
+    
+    // dispatch an event from the current gameObject to every child (recursively, children and grandchildren)
     Lady.Event.Dispatch(gameObject, "Yolo", propagation: currentTarget => Kit.Utils.Children(currentTarget));
 }
 ```
+
+Ok, but what is `Kit.Utils.Children` ?  
+Because Unity do not provide something like `transform.children` or `transform.GetAllChildren`...
 ```c#
 namespace Kit
 {
@@ -26,9 +33,8 @@ namespace Kit
         {
             GameObject[] gameObjects = new GameObject[gameObject.transform.childCount];
 
-            int index = 0;
-            foreach (Transform transform in gameObject.transform)
-                gameObjects[index++] = transform.gameObject;
+            for (int index = gameObject.transform.childCount - 1; index >= 0; index--)
+                gameObjects[index] = gameObject.transform.GetChild(index).gameObject;
 
             return gameObjects;
         }
