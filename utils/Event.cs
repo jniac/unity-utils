@@ -119,6 +119,9 @@ namespace Lady
                 {
                     if (listener.Match(@event.type))
                         listener.callback(@event);
+                    
+                    if (@event.Canceled)
+                        return;
                 }
             }
 
