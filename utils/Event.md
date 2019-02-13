@@ -4,7 +4,7 @@ Why `Lady` ? No one knows...
 
 ### Usage in Unity
 ```c#
-// somewhere in a monobehavior scripts
+// somewhere in a monobehavior script
 void Start()
 {
     GameObject aChild = transform.GetChild(0).GetChild(0).gameObject;
@@ -22,7 +22,7 @@ void Start()
 }
 ```
 
-Ok, but what is `Kit.Utils.Children` ?  
+Ok, but what is `Kit.Utils.Children()` ?  
 Because Unity do not provide something like `transform.children` or `transform.GetAllChildren`...
 ```c#
 namespace Kit
