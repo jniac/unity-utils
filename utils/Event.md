@@ -7,6 +7,7 @@ Why `Lady` ? No one knows...
 // somewhere in a monobehavior script
 void Start()
 {
+    // let "aChild" be an arbitrary child of the current gameObject
     GameObject aChild = transform.GetChild(0).GetChild(0).gameObject;
     
     // listen "Yolo" event on aChild
@@ -23,7 +24,7 @@ void Start()
 ```
 
 Ok, but what is `Kit.Utils.Children()` ?  
-Because Unity do not provide something like `transform.children` or `transform.GetAllChildren`...
+Because Unity do not provide something like `transform.children` or `transform.GetAllChildren()`...
 ```c#
 namespace Kit
 {
